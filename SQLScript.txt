@@ -1,0 +1,412 @@
+USE [master]
+GO
+
+CREATE DATABASE [Test]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Test', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\Test.mdf' , SIZE = 4096KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Test_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\Test_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [Test] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Test].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Test] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Test] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Test] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Test] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Test] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Test] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Test] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Test] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Test] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Test] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Test] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Test] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Test] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Test] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Test] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Test] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Test] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Test] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Test] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Test] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Test] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Test] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Test] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Test] SET  MULTI_USER 
+GO
+ALTER DATABASE [Test] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Test] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Test] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Test] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [Test] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Test', N'ON'
+GO
+USE [Test]
+GO
+/****** Object:  Table [dbo].[BO_Logs]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[BO_Logs](
+	[ID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[UserID] [numeric](18, 0) NULL,
+	[EventType] [nvarchar](max) NULL,
+	[EventLog] [nvarchar](max) NULL,
+	[DateLog] [varchar](50) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[BOFunctions]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BOFunctions](
+	[ID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[FunctionID] [numeric](18, 0) NOT NULL,
+	[FunctionDesc] [nvarchar](50) NULL,
+	[Authorization] [nvarchar](50) NULL,
+	[isViewFunctionality] [bit] NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[BOProfileFunctions]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BOProfileFunctions](
+	[ID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[ProfileID] [numeric](18, 0) NULL,
+	[FunctionID] [numeric](18, 0) NULL,
+	[Status] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[BOProfiles]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BOProfiles](
+	[ProfileID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[ProfileDesc] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[BOUserProfiles]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BOUserProfiles](
+	[ID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[UserID] [numeric](18, 0) NULL,
+	[ProfileID] [numeric](18, 0) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[BOUsers]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[BOUsers](
+	[UserID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](50) NULL,
+	[UserPass] [nvarchar](128) NULL,
+	[salt] [nvarchar](200) NULL,
+	[SessionID] [nvarchar](50) NULL,
+	[UserStatus] [varchar](50) NULL,
+	[DateCreated] [datetime] NULL,
+	[DateModified] [datetime] NULL,
+ CONSTRAINT [PK_BOUser] PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Department]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Department](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](250) NULL,
+	[Description] [nvarchar](max) NULL,
+	[Status] [nvarchar](50) NULL,
+	[DateCreated] [datetime] NULL,
+	[DateModified] [datetime] NULL,
+ CONSTRAINT [PK_Department] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Employee]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Employee](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[FName] [nvarchar](250) NULL,
+	[MName] [nvarchar](250) NULL,
+	[LName] [nvarchar](250) NULL,
+	[DOB] [date] NULL,
+	[MobileNo] [nvarchar](200) NULL,
+	[Salary] [numeric](18, 4) NULL,
+	[PositionID] [numeric](18, 0) NULL,
+	[DepartmentID] [numeric](18, 0) NULL,
+	[Status] [nvarchar](50) NULL,
+	[DateCreated] [datetime] NULL,
+	[DateModified] [datetime] NULL,
+ CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[EmployeePosition]    Script Date: 2/13/2021 7:09:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EmployeePosition](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Description] [nvarchar](250) NULL,
+	[Status] [nvarchar](50) NULL,
+ CONSTRAINT [PK_EmployeePosition] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET IDENTITY_INSERT [dbo].[BO_Logs] ON 
+
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(1 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213124724')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(2 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'UserName : itsuperadmin - Password : Pv11vvVgTCvnysrRo5TtEg== - TimeStamp : 20210213125026', N'210213125031')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(3 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Home - isTrueLogin>', N'Query:SELECT TOP 1 *  FROM BOUser Where Username like ''itsuperadmin'' ', N'210213125409')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(4 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Home - isTrueLogin>', N'Query:SELECT TOP 1 *  FROM BOUser Where Username like ''qwerty'' ', N'210213130051')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(7 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Function - HasPermission>', N'Query:select * from BO_UserProfile where UserID=1', N'210213130314')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(8 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213135126')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(9 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213135619')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(11 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Function - HasPermission>', N'Query:select * from BO_UserProfile where UserID=1', N'210213135814')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(13 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213140249')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(16 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'Error Log', N'<AccountController/Login> : Object reference not set to an instance of an object., ', N'210213140349')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(21 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'UserName : itsuperadmdin - Password : U/sMGsBrtT6JJTnjTr+qfQ== - TimeStamp : 20210213140436', N'210213140436')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(22 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213144514')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(23 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'UserName : itsuperadmin - Password : S8dU7vIAEvhL9nB/pYtWOw== - TimeStamp : 20210213144543', N'210213144543')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(5 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Home - isTrueLogin>', N'Query:SELECT TOP 1 *  FROM BOUser Where Username like ''itsuperadmin'' ', N'210213130130')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(17 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213140350')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(20 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'Start', N'210213140428')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(6 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Function - HasPermission>', N'Query:select * from BO_UserProfile where UserID=1', N'210213130314')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(10 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'UserName : itsuperadmin - Password : H0NCkLrNg8yJD3OV3QsgnQ== - TimeStamp : 20210213135656', N'210213135700')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(12 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'<Function - HasPermission>', N'Query:select * from BO_UserProfile where UserID=1', N'210213135814')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(14 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'UserName : itsuperadmin - Password : FBjCcesalRQncuEN3tGNcg== - TimeStamp : 20210213140303', N'210213140307')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(15 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'Error Log', N'<AccountController/Login> : Object reference not set to an instance of an object., ', N'210213140332')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(18 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'<Account - Login>', N'UserName : itsuperadmin - Password : iliv46usmEUp8E4Fs+SWxg== - TimeStamp : 20210213140404', N'210213140410')
+GO
+INSERT [dbo].[BO_Logs] ([ID], [UserID], [EventType], [EventLog], [DateLog]) VALUES (CAST(19 AS Numeric(18, 0)), CAST(0 AS Numeric(18, 0)), N'Error Log', N'<AccountController/Login> : Object reference not set to an instance of an object., ', N'210213140428')
+GO
+SET IDENTITY_INSERT [dbo].[BO_Logs] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BOFunctions] ON 
+
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(1 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'Home View', N'0', 1)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(2 AS Numeric(18, 0)), CAST(2 AS Numeric(18, 0)), N'Department View', N'0', 1)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(17 AS Numeric(18, 0)), CAST(3 AS Numeric(18, 0)), N'Department
+ Add', N'1', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(18 AS Numeric(18, 0)), CAST(4 AS Numeric(18, 0)), N'Department Edit', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(5 AS Numeric(18, 0)), CAST(5 AS Numeric(18, 0)), N'Department Delete', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(6 AS Numeric(18, 0)), CAST(6 AS Numeric(18, 0)), N'Employee View', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(7 AS Numeric(18, 0)), CAST(7 AS Numeric(18, 0)), N'Employee Add', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(8 AS Numeric(18, 0)), CAST(8 AS Numeric(18, 0)), N'Employee edit', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(10 AS Numeric(18, 0)), CAST(9 AS Numeric(18, 0)), N'Employee delete', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(11 AS Numeric(18, 0)), CAST(10 AS Numeric(18, 0)), N'BOProfiles View', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(12 AS Numeric(18, 0)), CAST(11 AS Numeric(18, 0)), N'BOProfiles Edit', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(13 AS Numeric(18, 0)), CAST(12 AS Numeric(18, 0)), N'BOProfiles delete', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(14 AS Numeric(18, 0)), CAST(13 AS Numeric(18, 0)), N'BOProfiles Add', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(15 AS Numeric(18, 0)), CAST(14 AS Numeric(18, 0)), N'BOProfiles Show Functions', N'0', 0)
+GO
+INSERT [dbo].[BOFunctions] ([ID], [FunctionID], [FunctionDesc], [Authorization], [isViewFunctionality]) VALUES (CAST(16 AS Numeric(18, 0)), CAST(15 AS Numeric(18, 0)), N'BOFunctions View', N'0', 0)
+GO
+SET IDENTITY_INSERT [dbo].[BOFunctions] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BOProfileFunctions] ON 
+
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(1 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(2 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(2 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(3 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(3 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(4 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(4 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(5 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(6 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(6 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(7 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(7 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(8 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(8 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(9 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(9 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(10 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(10 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(11 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(11 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(12 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(12 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(13 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(13 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(14 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(14 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(15 AS Numeric(18, 0)), N'Active')
+GO
+INSERT [dbo].[BOProfileFunctions] ([ID], [ProfileID], [FunctionID], [Status]) VALUES (CAST(15 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(17 AS Numeric(18, 0)), N'Active')
+GO
+SET IDENTITY_INSERT [dbo].[BOProfileFunctions] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BOProfiles] ON 
+
+GO
+INSERT [dbo].[BOProfiles] ([ProfileID], [ProfileDesc]) VALUES (CAST(1 AS Numeric(18, 0)), N'itsuperadminProfile')
+GO
+INSERT [dbo].[BOProfiles] ([ProfileID], [ProfileDesc]) VALUES (CAST(2 AS Numeric(18, 0)), N'adminProfile')
+GO
+SET IDENTITY_INSERT [dbo].[BOProfiles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BOUserProfiles] ON 
+
+GO
+INSERT [dbo].[BOUserProfiles] ([ID], [UserID], [ProfileID]) VALUES (CAST(1 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)))
+GO
+SET IDENTITY_INSERT [dbo].[BOUserProfiles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BOUsers] ON 
+
+GO
+INSERT [dbo].[BOUsers] ([UserID], [Username], [UserPass], [salt], [SessionID], [UserStatus], [DateCreated], [DateModified]) VALUES (CAST(1 AS Numeric(18, 0)), N'S.Tanoury', N'$2a$10$Pg9AOn/uA/hB5t2KdCEuuedDoXVEvt4CECZwGJ1gzvV.Cl8.ADDPu', N'4W5SfugVmL2fGVz9metYRuNlfAlKIpAoxoF99vPUUDCb4nhurrQ6oXaiMmIJ', N'', N'Active', CAST(N'2021-02-13 11:39:53.533' AS DateTime), NULL)
+GO
+SET IDENTITY_INSERT [dbo].[BOUsers] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Department] ON 
+
+GO
+INSERT [dbo].[Department] ([ID], [Name], [Description], [Status], [DateCreated], [DateModified]) VALUES (1, N'IT', N'Information technology (IT)', N'Active', CAST(N'2021-02-13 13:39:21.847' AS DateTime), NULL)
+GO
+INSERT [dbo].[Department] ([ID], [Name], [Description], [Status], [DateCreated], [DateModified]) VALUES (2, N'HR', N'Human Resources (HR)', N'Active', CAST(N'2021-02-13 13:39:59.120' AS DateTime), CAST(N'2021-02-13 17:50:49.100' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Department] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Employee] ON 
+
+GO
+INSERT [dbo].[Employee] ([ID], [FName], [MName], [LName], [DOB], [MobileNo], [Salary], [PositionID], [DepartmentID], [Status], [DateCreated], [DateModified]) VALUES (1, N'Samer', N'Elias ', N'Tannoury', CAST(N'1997-02-13' AS Date), N'70156519', CAST(1400.0000 AS Numeric(18, 4)), CAST(1 AS Numeric(18, 0)), CAST(1 AS Numeric(18, 0)), N'Active', NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Employee] OFF
+GO
+SET IDENTITY_INSERT [dbo].[EmployeePosition] ON 
+
+GO
+INSERT [dbo].[EmployeePosition] ([ID], [Description], [Status]) VALUES (1, N'Manager', N'Active')
+GO
+INSERT [dbo].[EmployeePosition] ([ID], [Description], [Status]) VALUES (2, N'Senior', N'Active')
+GO
+INSERT [dbo].[EmployeePosition] ([ID], [Description], [Status]) VALUES (3, N'Junior', N'Active')
+GO
+SET IDENTITY_INSERT [dbo].[EmployeePosition] OFF
+GO
+USE [master]
+GO
+ALTER DATABASE [Test] SET  READ_WRITE 
+GO
