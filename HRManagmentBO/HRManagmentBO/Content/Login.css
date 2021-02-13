@@ -1,0 +1,101 @@
+.ErrorMsg {
+    color: red;
+    font-family: Gravity;
+    list-style-type: circle;
+    display: block;
+}
+
+
+
+.Randomspan {
+    display: none;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 97%;
+    width: 99%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#btn{
+	border-radius: 6px;
+	  width: 65%;
+    height: 36px;
+	background-color:#E3943E;
+	color:#fff;
+	font-family: "Gravity Book";
+	font-size:16px;
+	}
+	
+	
+	#btn:hover{
+		cursor:pointer;
+	}
+	
+.txt{
+	
+	background-color: #E2E2E2;
+    border-radius: 6px;
+    height: 36px;
+    width: 65%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    /*background-position-x: 16px;
+    background-position-y: 10px;*/
+	background-position:15px center;
+    border: thin inset silver;
+	font-family:Gravity;
+    border-width: thin;
+    padding-left: 44px;
+    margin-bottom: 4px;
+	}
+	
+
+
+
+.txtBold{
+	
+	background-color: #E2E2E2;
+    border-radius: 6px;
+    height: 36px;
+    width: 65%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    /*background-position-x: 16px;
+    background-position-y: 10px;*/
+	background-position:15px center;
+    border: thin inset silver;
+	font-family:Gravity;
+    border-width: thin;
+    padding-left: 44px;
+    margin-bottom: 4px;
+     font-weight: bold;
+	}
+	.Title {
+  font-weight: bold;
+  
+  font-family:Gravity;
+  font-size:larger;
+}
+body{
+
+background-repeat:no-repeat;
+background-size:cover;
+width:98%;
+height:97%;
+	}
+#divElement{
+    width: 400px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto; 
+}​
+ :required {
+  background: red;
+}

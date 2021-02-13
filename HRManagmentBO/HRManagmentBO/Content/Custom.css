@@ -1,0 +1,584 @@
+﻿.main-section{
+  width: 400px;
+  position: fixed;
+  right:50px;
+  bottom:0px;
+ 
+}
+
+
+.main-section1{
+  width: 400px;
+  position: fixed;
+  right:50px;
+  bottom:0px;
+   transition:2s;
+}
+.first-section:hover{
+  cursor: pointer;
+}
+.open-more{
+
+  width: 400px;
+  position: fixed;
+  right:50px;
+  bottom:0px;
+  height:40px;
+  transition:2s;
+}
+.open-more1{
+
+  width: 400px;
+  position: fixed;
+  right:50px;
+  bottom:0px;
+  height:40px;
+
+}
+.border-chat{
+  border:1px solid #333;
+  margin: 0px;
+}
+.first-section{
+  background-color:#333;
+}
+.first-section p{
+  color:#fff;
+  margin:0px;
+  padding: 10px 24px;
+}
+.first-section p:hover{
+  color:#fff;
+  cursor: pointer;
+}
+
+
+.left-first-section{
+   text-align: left;
+}
+.left-first-section i{
+  color:#fff;
+  font-size: 15px;
+  padding: 0px 3px;
+}
+.left-first-section i:hover{
+  color:#fff;
+}
+
+
+
+
+
+
+
+.right-first-section{
+   text-align: right;
+}
+.right-first-section i{
+  color:#fff;
+  font-size: 15px;
+  padding: 12px 3px;
+}
+.right-first-section i:hover{
+  color:#fff;
+}
+.chat-section ul li{
+  list-style: none;
+  margin-top:10px;
+  position: relative;
+}
+.chat-section{
+
+  overflow-y:auto; 
+  height:100%;
+  
+}
+.chat-section ul{
+  padding: 0px;
+}
+.left-chat img,.right-chat img{
+  width:50px;
+  height:50px;
+  float:left;
+  margin:0px 10px;
+  
+}
+.right-chat img{
+  float:right;
+}
+.second-section{
+  padding: 0px;
+  margin: 0px;
+  background-color: #F3F3F3;
+  height: 750px;
+}
+.left-chat,.right-chat{
+  overflow: hidden;
+}
+.left-chat p,.right-chat p{
+  background-color:#333;
+  padding: 10px;
+  color:#fff;
+  border-radius: 5px; 
+  float:left;
+  width:60%;
+  margin-bottom:20px;
+}
+    .left-chat span, .right-chat span {
+        position: absolute;
+        left: 70px;
+        bottom: 1px;
+        color: #B7BCC5;
+    }
+.right-chat span{
+  left:63%;
+}
+.right-chat p{
+  float:right;
+  margin-right: 7%;
+  background-color: #bfbfbe;
+  color:#333;
+}
+.third-section{
+  border-top: 1px solid #EEEEEE;
+}
+.text-bar input{
+  width:90%;
+  margin-left:-15px;
+  padding:10px 10px;
+  border:1px solid #fff;
+}
+.text-bar a i{
+  background-color:#333;
+  color:#fff;
+  width:30px;
+  height:30px;
+  padding:7px 0px;
+  border-radius: 50%;
+  text-align: center;
+}
+.left-chat:before{
+  content: " ";
+  position:absolute;
+  top:0px;
+  left:55px;
+  bottom:150px;
+  border:15px solid transparent;
+  border-top-color:#333; 
+}
+.right-chat:before{
+  content: " ";
+  position:absolute;
+  top:0px;
+  right:15px;
+  bottom:150px;
+  border:15px solid transparent;
+  border-top-color:#bfbfbe;
+ 
+}
+
+
+
+.intercom-composer-popover-input{
+    font-size-adjust: none;
+    font-size: 100%;
+    font-style: normal;
+    letter-spacing: normal;
+    font-stretch: normal;
+    font-variant: normal;
+    font-weight: 400;
+    font: normal normal 100% "intercom-font", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: left;
+    text-align-last: auto;
+    text-decoration: none;
+    -webkit-text-emphasis: none;
+    text-emphasis: none;
+    text-height: auto;
+    text-indent: 0;
+    text-justify: auto;
+    text-outline: none;
+    text-shadow: none;
+    text-transform: none;
+    text-wrap: normal;
+    alignment-adjust: auto;
+    alignment-baseline: baseline;
+    -webkit-animation: none 0 ease 0 1 normal;
+    animation: none 0 ease 0 1 normal;
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+    -webkit-appearance: normal;
+    -moz-appearance: normal;
+    appearance: normal;
+    azimuth: center;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    background: none 0 0 auto repeat scroll padding-box transparent;
+    background-color: transparent;
+    background-image: none;
+    baseline-shift: baseline;
+    binding: none;
+    bleed: 6pt;
+    bookmark-label: content();
+    bookmark-level: none;
+    bookmark-state: open;
+    bookmark-target: none;
+    border: 0 none transparent;
+    border-radius: 0;
+    bottom: auto;
+    box-align: stretch;
+    -webkit-box-decoration-break: slice;
+    box-decoration-break: slice;
+    box-direction: normal;
+    box-flex: 0.0;
+    box-flex-group: 1;
+    box-lines: single;
+    box-ordinal-group: 1;
+    box-orient: inline-axis;
+    box-pack: start;
+    box-shadow: none;
+    box-sizing: content-box;
+    -webkit-column-break-after: auto;
+    break-after: auto;
+    -webkit-column-break-before: auto;
+    break-before: auto;
+    -webkit-column-break-inside: auto;
+    break-inside: auto;
+    caption-side: top;
+    clear: none;
+    clip: auto;
+    color: inherit;
+    color-profile: auto;
+    -webkit-column-count: auto;
+    -moz-column-count: auto;
+    column-count: auto;
+    -webkit-column-fill: balance;
+    -moz-column-fill: balance;
+    column-fill: balance;
+    -webkit-column-gap: normal;
+    -moz-column-gap: normal;
+    column-gap: normal;
+    -webkit-column-rule: medium medium #1f1f1f;
+    -moz-column-rule: medium medium #1f1f1f;
+    column-rule: medium medium #1f1f1f;
+    -webkit-column-span: 1;
+    -moz-column-span: 1;
+    column-span: 1;
+    -webkit-column-width: auto;
+    -moz-column-width: auto;
+    column-width: auto;
+    -webkit-columns: auto auto;
+    -moz-columns: auto auto;
+    columns: auto auto;
+    content: normal;
+    counter-increment: none;
+    counter-reset: none;
+    crop: auto;
+    cursor: auto;
+    direction: ltr;
+    display: inline;
+    dominant-baseline: auto;
+    drop-initial-after-adjust: text-after-edge;
+    drop-initial-after-align: baseline;
+    drop-initial-before-adjust: text-before-edge;
+    drop-initial-before-align: caps-height;
+    drop-initial-size: auto;
+    drop-initial-value: initial;
+    elevation: level;
+    empty-cells: show;
+    fit: fill;
+    fit-position: 0 0;
+    float: none;
+    float-offset: 0 0;
+    grid-columns: none;
+    grid-rows: none;
+    hanging-punctuation: none;
+    height: auto;
+    hyphenate-after: auto;
+    hyphenate-before: auto;
+    hyphenate-character: auto;
+    hyphenate-lines: no-limit;
+    hyphenate-resource: none;
+    -webkit-hyphens: manual;
+    -ms-hyphens: manual;
+    hyphens: manual;
+    icon: auto;
+    image-orientation: auto;
+    image-rendering: auto;
+    image-resolution: normal;
+    inline-box-align: last;
+    left: auto;
+    line-height: inherit;
+    line-stacking: inline-line-height exclude-ruby consider-shifts;
+    list-style: disc outside none;
+    margin: 0;
+    marks: none;
+    marquee-direction: forward;
+    marquee-loop: 1;
+    marquee-play-count: 1;
+    marquee-speed: normal;
+    marquee-style: scroll;
+    max-height: none;
+    max-width: none;
+    min-height: 0;
+    min-width: 0;
+    move-to: normal;
+    nav-down: auto;
+    nav-index: auto;
+    nav-left: auto;
+    nav-right: auto;
+    nav-up: auto;
+    opacity: 1;
+    orphans: 2;
+    outline: medium none invert;
+    outline-offset: 0;
+    overflow: visible;
+    overflow-style: auto;
+    padding: 0;
+    page: auto;
+    page-break-after: auto;
+    page-break-before: auto;
+    page-break-inside: auto;
+    page-policy: start;
+    -webkit-perspective: none;
+    perspective: none;
+    -webkit-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+    pointer-events: auto;
+    position: static;
+    presentation-level: 0;
+    punctuation-trim: none;
+    quotes: none;
+    rendering-intent: auto;
+    resize: none;
+    right: auto;
+    rotation: 0;
+    rotation-point: 50% 50%;
+    ruby-align: auto;
+    ruby-overhang: none;
+    ruby-position: before;
+    ruby-span: none;
+    size: auto;
+    string-set: none;
+    table-layout: auto;
+    top: auto;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    -webkit-transform-origin: 50% 50% 0;
+    -ms-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    -webkit-transform-style: flat;
+    transform-style: flat;
+    transition: all 0 ease 0;
+    unicode-bidi: normal;
+    vertical-align: baseline;
+    white-space: normal;
+    white-space-collapse: collapse;
+    widows: 2;
+    width: auto;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    z-index: auto;
+    text-align: start;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+}
+/*.intercom-composer-popover {
+    z-index: 2147483003;
+    position: absolute;
+    bottom: 50px;
+    right: calc(50% - 165px);
+    box-shadow: 0 1px 15px 1px rgba(0,0,0,.08);
+    background-color: #fff;
+    border-radius: 6px;
+    transition-duration: 200ms;
+    transition-delay: 0ms;
+    transform-style: flat;
+    transform-origin: 50% 50% 0;
+    opacity: 0;
+    transition: all 0.2s linear;
+    visibility: hidden;
+}*/
+.intercom-composer-popover {
+    z-index: 2147483003;
+    position: absolute;
+    bottom: 63%;
+    right: calc(-9% - 168px);
+    box-shadow: 0 1px 15px 1px rgba(0,0,0,.08);
+    background-color: #fff;
+    border-radius: 6px;
+    transition-duration: 200ms;
+    transition-delay: 0ms;
+    transform-style: flat;
+    transform-origin: 50% 50% 0;
+    opacity: 0;
+    transition: all 0.2s linear;
+    visibility: hidden;
+}
+.intercom-composer-popover.active{
+  visibility: visible;
+  opacity:1;
+  bottom: 60%;
+}
+.intercom-emoji-picker {
+    width: 330px;
+    height: 260px;
+}
+.intercom-composer-popover-header {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 40px;
+    border-bottom: 1px solid #edeff1;
+}
+.intercom-composer-popover-input {
+    background-image: url(https://js.intercomcdn.com/images/search.7ae40c25.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 0 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6e7a89;
+    padding-left: 25px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    background-image: url(https://js.intercomcdn.com/images/search@2x.9f02b9f3.png);
+    border:none;
+    outline: none;
+}
+.intercom-composer-popover-body {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    padding: 0 20px;
+    overflow-y: scroll;
+}
+.intercom-emoji-picker-group {
+    margin: 10px -5px;
+}
+.intercom-emoji-picker-group {
+    margin: 10px -5px;
+}
+.intercom-emoji-picker-group-title {
+    color: #b8c3ca;
+    font-weight: 400;
+    font-size: 13px;
+    margin: 5px;
+}
+.intercom-emoji-picker-emoji {
+    padding: 5px;
+    width: 30px;
+    line-height: 30px;
+    display: inline-table;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+    font-size: 28px;
+    transition: -webkit-transform 60ms ease-out;
+    transition: transform 60ms ease-out;
+    transition: transform 60ms ease-out,-webkit-transform 60ms ease-out;
+    transition-delay: 60ms;
+    font-family: Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,Android Emoji,EmojiSymbols;
+}
+.intercom-emoji-picker-emoji:hover {
+    transition-delay: 0ms;
+    -webkit-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
+}
+.intercom-composer-popover-caret {
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #fff;
+    left:20px;
+}
+
+.chat-input-tool{
+  /*background-color: #32A8E6;*/
+  padding: 10px;
+  border:none;  
+  border-radius: 5px;
+  position: relative;
+  bottom:1px;
+  left: 97%;
+  outline:none;
+}
+
+.chatparagraph {
+
+    word-wrap: break-word;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+}
+.checkmark1 {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+}
+.Ucontainers {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* On mouse-over, add a grey background color */
+.containers:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containers input:checked ~ .checkmark {
+    background-color: #24aa17;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.containers input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.containers .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

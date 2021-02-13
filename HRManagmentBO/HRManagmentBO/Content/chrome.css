@@ -1,0 +1,23 @@
+﻿
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{ 
+    .chart {
+
+    position: static;
+     /*margin-left: 767px;*/
+          margin-top: -768px;
+       width: 37%;
+    }
+}
+
+@-moz-document url-prefix() {
+     .chart {
+
+    position: static;
+    margin-left: 776px;
+    margin-top: -772px;
+    width: 37%;
+    }
+}
+

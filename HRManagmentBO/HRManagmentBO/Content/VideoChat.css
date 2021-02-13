@@ -1,0 +1,345 @@
+
+#videos {
+    /*position: relative;*/
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#subscriber {
+    position: absolute;
+    left: 0;
+    top: 10%;
+    width: 65%;
+    height: 100%;
+    z-index: 0;
+}
+#publisher {
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+    border: 3px solid white;
+    border-radius: 3px;
+}
+
+#dvMap {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 10%;
+    left: 10px;
+    z-index: 1;
+   
+}
+
+
+#EndCall{
+    display:inline block;
+    position:absolute;
+    bottom: 10px;
+    left: 40%;
+    z-index: 100;
+
+}
+
+
+#AMLBLOCKEDUSER{
+    background-color:white;
+    display:inline block;
+    position:absolute;
+    /*bottom: 10px;*/
+    right: 45%;
+    z-index: 100;
+
+}
+
+
+
+
+
+#StartArchiving{
+    display:inline block;
+    position:absolute;
+    bottom: 10px;
+    left: 30%;
+    z-index: 100;
+
+
+
+}
+
+#EndCallWithValidation{
+    display:inline block;
+    position:absolute;
+    bottom: 10px;
+    left: 50%;
+    z-index: 100;
+
+}
+
+.zoomFrontID {
+    /*padding: 50px;*/
+    transition: transform .2s; /* Animation */
+    /*width: 200px;
+    height: 200px;*/
+    margin: 0 auto;
+    /*z-index: 1;*/
+}
+
+.zoomBackID {
+    /*padding: 50px;*/
+    transition: transform .2s; /* Animation */
+    /*width: 200px;
+    height: 200px;*/
+    margin: 0 auto;
+    /*z-index: 1;*/
+}
+
+.zoomBill {
+    /*padding: 50px;*/
+    transition: transform .2s; /* Animation */
+    /*width: 200px;
+    height: 200px;*/
+    margin: 0 auto;
+    /*z-index: 1;*/
+}
+
+.zoomBill:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    z-index:0;
+    position:absolute;
+
+}
+
+.zoomBackID:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    z-index:0;
+    position:absolute;
+
+}
+
+.zoomFrontID:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    z-index:0;
+    position:absolute;
+
+}
+
+.thumbnails {
+    padding: 35px;
+}
+.thumbnail {
+    float:left;
+    position:relative;
+    width: 70px;
+    margin-right: 10px;
+}
+.thumbnail img{
+    /* ... */
+    width:70px;
+    height:50px;
+}    
+
+.thumbnail:hover img {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:140px;
+    height:100px;
+    display:block;
+    z-index:999;
+}
+
+.tiles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /*.tile {
+    position: relative;
+    float: left;
+    width: 95%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom:5%;
+    margin-top:5%;
+  }
+
+  .photo {
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+    transition: transform .5s ease-out;
+  }*/
+
+  .txt {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 10%;
+    left: 0;
+    font-family: 'Roboto Slab', serif;
+    font-size: 9px;
+    line-height: 12px;
+    text-align: center;
+    cursor: default;
+  }
+
+  .x {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+
+         /* The container */
+.containers {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containers input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+}
+
+
+.IDs {
+    position: absolute;
+    top: 0;
+    left: 5%;
+
+}
+
+
+
+/* On mouse-over, add a grey background color */
+.containers:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containers input:checked ~ .checkmark {
+    background-color: #24aa17;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.containers input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.containers .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+div.text-center {
+  background-color: white;
+}
+
+
+
+
+.color-green {
+            background-color: green;
+        }
+
+        .color-orange {
+            background-color: orange;
+        }
+
+        .color-red {
+            background-color: red;
+        
+            }
+
+
+
+          .tiles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tile {
+            position: absolute;
+            float: left;
+            width: 50%;
+            height: 30%;
+            overflow: hidden;
+            margin-bottom: 5%;
+            margin-top: 5%;
+            z-index: 1;
+            overflow-x: hidden;
+        }
+
+        .photo {
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            max-width: 100%;
+            max-height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transition: transform .5s ease-out;
+        }
+       
+
+
+        .MoreInfoPanel{
+            z-index: 0;
+            margin-top: -55px;
+            /*overflow-x: auto;
+            overflow-y: auto;*/
+
+
+        }

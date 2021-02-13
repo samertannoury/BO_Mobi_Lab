@@ -1,0 +1,250 @@
+﻿.Dpanel {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.Dpanel-body {
+    padding: 15px;
+}
+.Dpanel-heading {
+    padding: 0px 34px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.Dpanel-heading>.dropdown .dropdown-toggle {
+    color: inherit;
+}
+.Dpanel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
+.Dpanel-title>.small, .Dpanel-title>.small>a, .Dpanel-title>a, .Dpanel-title>small, .Dpanel-title>small>a {
+    color: inherit;
+}
+.Dpanel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.Dpanel>.list-group, .Dpanel>.Dpanel-collapse>.list-group {
+    margin-bottom: 0;
+}
+.Dpanel>.list-group .list-group-item, .Dpanel>.Dpanel-collapse>.list-group .list-group-item {
+    border-width: 1px 0;
+    border-radius: 0;
+}
+.Dpanel>.list-group:first-child .list-group-item:first-child, .Dpanel>.Dpanel-collapse>.list-group:first-child .list-group-item:first-child {
+    border-top: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.Dpanel>.list-group:last-child .list-group-item:last-child, .Dpanel>.Dpanel-collapse>.list-group:last-child .list-group-item:last-child {
+    border-bottom: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.Dpanel-heading+.list-group .list-group-item:first-child {
+    border-top-width: 0;
+}
+.list-group+.Dpanel-footer {
+    border-top-width: 0;
+}
+.Dpanel>.Dpanel-collapse>.table, .Dpanel>.table, .Dpanel>.table-responsive>.table {
+    margin-bottom: 0;
+}
+.Dpanel>.Dpanel-collapse>.table caption, .Dpanel>.table caption, .Dpanel>.table-responsive>.table caption {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.Dpanel>.table-responsive:first-child>.table:first-child, .Dpanel>.table:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.Dpanel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child, .Dpanel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child, .Dpanel>.table:first-child>tbody:first-child>tr:first-child, .Dpanel>.table:first-child>thead:first-child>tr:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.Dpanel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child td:first-child, .Dpanel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child th:first-child, .Dpanel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child td:first-child, .Dpanel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child th:first-child, .Dpanel>.table:first-child>tbody:first-child>tr:first-child td:first-child, .Dpanel>.table:first-child>tbody:first-child>tr:first-child th:first-child, .Dpanel>.table:first-child>thead:first-child>tr:first-child td:first-child, .Dpanel>.table:first-child>thead:first-child>tr:first-child th:first-child {
+    border-top-left-radius: 3px;
+}
+.Dpanel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child td:last-child, .Dpanel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child th:last-child, .Dpanel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child td:last-child, .Dpanel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child th:last-child, .Dpanel>.table:first-child>tbody:first-child>tr:first-child td:last-child, .Dpanel>.table:first-child>tbody:first-child>tr:first-child th:last-child, .Dpanel>.table:first-child>thead:first-child>tr:first-child td:last-child, .Dpanel>.table:first-child>thead:first-child>tr:first-child th:last-child {
+    border-top-right-radius: 3px;
+}
+.Dpanel>.table-responsive:last-child>.table:last-child, .Dpanel>.table:last-child {
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.Dpanel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child, .Dpanel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child, .Dpanel>.table:last-child>tbody:last-child>tr:last-child, .Dpanel>.table:last-child>tfoot:last-child>tr:last-child {
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.Dpanel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child td:first-child, .Dpanel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child th:first-child, .Dpanel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child td:first-child, .Dpanel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child th:first-child, .Dpanel>.table:last-child>tbody:last-child>tr:last-child td:first-child, .Dpanel>.table:last-child>tbody:last-child>tr:last-child th:first-child, .Dpanel>.table:last-child>tfoot:last-child>tr:last-child td:first-child, .Dpanel>.table:last-child>tfoot:last-child>tr:last-child th:first-child {
+    border-bottom-left-radius: 3px;
+}
+.Dpanel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child td:last-child, .Dpanel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child th:last-child, .Dpanel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child td:last-child, .Dpanel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child th:last-child, .Dpanel>.table:last-child>tbody:last-child>tr:last-child td:last-child, .Dpanel>.table:last-child>tbody:last-child>tr:last-child th:last-child, .Dpanel>.table:last-child>tfoot:last-child>tr:last-child td:last-child, .Dpanel>.table:last-child>tfoot:last-child>tr:last-child th:last-child {
+    border-bottom-right-radius: 3px;
+}
+.Dpanel>.Dpanel-body+.table, .Dpanel>.Dpanel-body+.table-responsive, .Dpanel>.table+.Dpanel-body, .Dpanel>.table-responsive+.Dpanel-body {
+    border-top: 1px solid #ddd;
+}
+.Dpanel>.table>tbody:first-child>tr:first-child td, .Dpanel>.table>tbody:first-child>tr:first-child th {
+    border-top: 0;
+}
+.Dpanel>.table-bordered, .Dpanel>.table-responsive>.table-bordered {
+    border: 0;
+}
+.Dpanel>.table-bordered>tbody>tr>td:first-child, .Dpanel>.table-bordered>tbody>tr>th:first-child, .Dpanel>.table-bordered>tfoot>tr>td:first-child, .Dpanel>.table-bordered>tfoot>tr>th:first-child, .Dpanel>.table-bordered>thead>tr>td:first-child, .Dpanel>.table-bordered>thead>tr>th:first-child, .Dpanel>.table-responsive>.table-bordered>tbody>tr>td:first-child, .Dpanel>.table-responsive>.table-bordered>tbody>tr>th:first-child, .Dpanel>.table-responsive>.table-bordered>tfoot>tr>td:first-child, .Dpanel>.table-responsive>.table-bordered>tfoot>tr>th:first-child, .Dpanel>.table-responsive>.table-bordered>thead>tr>td:first-child, .Dpanel>.table-responsive>.table-bordered>thead>tr>th:first-child {
+    border-left: 0;
+}
+.Dpanel>.table-bordered>tbody>tr>td:last-child, .Dpanel>.table-bordered>tbody>tr>th:last-child, .Dpanel>.table-bordered>tfoot>tr>td:last-child, .Dpanel>.table-bordered>tfoot>tr>th:last-child, .Dpanel>.table-bordered>thead>tr>td:last-child, .Dpanel>.table-bordered>thead>tr>th:last-child, .Dpanel>.table-responsive>.table-bordered>tbody>tr>td:last-child, .Dpanel>.table-responsive>.table-bordered>tbody>tr>th:last-child, .Dpanel>.table-responsive>.table-bordered>tfoot>tr>td:last-child, .Dpanel>.table-responsive>.table-bordered>tfoot>tr>th:last-child, .Dpanel>.table-responsive>.table-bordered>thead>tr>td:last-child, .Dpanel>.table-responsive>.table-bordered>thead>tr>th:last-child {
+    border-right: 0;
+}
+.Dpanel>.table-bordered>tbody>tr:first-child>td, .Dpanel>.table-bordered>tbody>tr:first-child>th, .Dpanel>.table-bordered>thead>tr:first-child>td, .Dpanel>.table-bordered>thead>tr:first-child>th, .Dpanel>.table-responsive>.table-bordered>tbody>tr:first-child>td, .Dpanel>.table-responsive>.table-bordered>tbody>tr:first-child>th, .Dpanel>.table-responsive>.table-bordered>thead>tr:first-child>td, .Dpanel>.table-responsive>.table-bordered>thead>tr:first-child>th {
+    border-bottom: 0;
+}
+.Dpanel>.table-bordered>tbody>tr:last-child>td, .Dpanel>.table-bordered>tbody>tr:last-child>th, .Dpanel>.table-bordered>tfoot>tr:last-child>td, .Dpanel>.table-bordered>tfoot>tr:last-child>th, .Dpanel>.table-responsive>.table-bordered>tbody>tr:last-child>td, .Dpanel>.table-responsive>.table-bordered>tbody>tr:last-child>th, .Dpanel>.table-responsive>.table-bordered>tfoot>tr:last-child>td, .Dpanel>.table-responsive>.table-bordered>tfoot>tr:last-child>th {
+    border-bottom: 0;
+}
+.Dpanel>.table-responsive {
+    margin-bottom: 0;
+    border: 0;
+}
+.Dpanel-group {
+    margin-bottom: 20px;
+}
+.Dpanel-group .Dpanel {
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+.Dpanel-group .Dpanel+.Dpanel {
+    margin-top: 5px;
+}
+.Dpanel-group .Dpanel-heading {
+    border-bottom: 0;
+}
+.Dpanel-group .Dpanel-heading+.Dpanel-collapse>.list-group, .Dpanel-group .Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top: 1px solid #ddd;
+}
+.Dpanel-group .Dpanel-footer {
+    border-top: 0;
+}
+.Dpanel-group .Dpanel-footer+.Dpanel-collapse .Dpanel-body {
+    border-bottom: 1px solid #ddd;
+}
+.Dpanel-default {
+    border-color: #ddd;
+}
+.Dpanel-default>.Dpanel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+.Dpanel-default>.Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top-color: #ddd;
+}
+.Dpanel-default>.Dpanel-heading .badge {
+    color: #f5f5f5;
+    background-color: #333;
+}
+.Dpanel-default>.Dpanel-footer+.Dpanel-collapse>.Dpanel-body {
+    border-bottom-color: #ddd;
+}
+.Dpanel-primary {
+    border-color: #337ab7;
+}
+.Dpanel-primary>.Dpanel-heading {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    height:86px;
+}
+.Dpanel-primary>.Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top-color: #337ab7;
+}
+.Dpanel-primary>.Dpanel-heading .badge {
+    color: #337ab7;
+    background-color: #fff;
+}
+.Dpanel-primary>.Dpanel-footer+.Dpanel-collapse>.Dpanel-body {
+    border-bottom-color: #337ab7;
+}
+.Dpanel-success {
+    border-color: #d6e9c6;
+}
+.Dpanel-success>.Dpanel-heading {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.Dpanel-success>.Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top-color: #d6e9c6;
+}
+.Dpanel-success>.Dpanel-heading .badge {
+    color: #dff0d8;
+    background-color: #3c763d;
+}
+.Dpanel-success>.Dpanel-footer+.Dpanel-collapse>.Dpanel-body {
+    border-bottom-color: #d6e9c6;
+}
+.Dpanel-info {
+    border-color: #bce8f1;
+}
+.Dpanel-info>.Dpanel-heading {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+.Dpanel-info>.Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top-color: #bce8f1;
+}
+.Dpanel-info>.Dpanel-heading .badge {
+    color: #d9edf7;
+    background-color: #31708f;
+}
+.Dpanel-info>.Dpanel-footer+.Dpanel-collapse>.Dpanel-body {
+    border-bottom-color: #bce8f1;
+}
+.Dpanel-warning {
+    border-color: #faebcc;
+}
+.Dpanel-warning>.Dpanel-heading {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+.Dpanel-warning>.Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top-color: #faebcc;
+}
+.Dpanel-warning>.Dpanel-heading .badge {
+    color: #fcf8e3;
+    background-color: #8a6d3b;
+}
+.Dpanel-warning>.Dpanel-footer+.Dpanel-collapse>.Dpanel-body {
+    border-bottom-color: #faebcc;
+}
+.Dpanel-danger {
+    border-color: #ebccd1;
+}
+.Dpanel-danger>.Dpanel-heading {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.Dpanel-danger>.Dpanel-heading+.Dpanel-collapse>.Dpanel-body {
+    border-top-color: #ebccd1;
+}
+.Dpanel-danger>.Dpanel-heading .badge {
+    color: #f2dede;
+    background-color: #a94442;
+}
+.Dpanel-danger>.Dpanel-footer+.Dpanel-collapse>.Dpanel-body {
+    border-bottom-color: #ebccd1;
+}
