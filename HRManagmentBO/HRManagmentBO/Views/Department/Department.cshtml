@@ -1,0 +1,538 @@
+﻿
+@{
+    ViewBag.Title = "Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+    <link href="~/Content/main.css" rel="stylesheet" />
+
+    <script>
+        var app = angular.module('MyApp', ['angularUtils.directives.dirPagination',  'ngDialog']);
+            app.filter('customNumber', function () {
+                return function (value) {
+                    if (value == null || value == "") {
+                        return "";
+                    }
+                    try {
+                        var aa = parseInt(value, 10);
+                        return aa;
+                    } catch (e) {
+                        return value;
+                    }
+                }
+            });
+
+        app.config(['ngDialogProvider', function (ngDialogProvider) {
+            ngDialogProvider.setDefaults({
+                className: 'ngdialog-theme-default',
+                plain: false,
+                showClose: true,
+                closeByDocument: true,
+                closeByEscape: true,
+                appendTo: false,
+                preCloseCallback: function () {
+                    console.log('default pre-close callback');
+                }
+            });
+        }]);
+          
+
+
+        app.controller('validateCtrl', function ($scope, $http, $filter, ngDialog) {
+                $scope.showErrorLogs = false;
+                $scope.AddMode = false;
+                $scope.editMode = false;
+
+                $scope.statuslst = [];
+                $scope.ActiveChecked = true;
+                $scope.statuslst.push("Active");
+                $scope.StatusChecked = function () {
+
+                    $scope.statuslst = [];
+                    if ($scope.ActiveChecked == true) {
+
+                        $scope.statuslst.push("Active");
+                    }
+                    if ($scope.InactiveChecked == true) {
+
+                        $scope.statuslst.push("Inactive");
+                    }
+                    getAllData();
+                }
+
+                $scope.Pages = [
+                    {
+                        id: '5',
+                        name: '5'
+                    }, {
+                        id: '10',
+                        name: '10'
+                    }, {
+                        id: '15',
+                        name: '15'
+                    }, {
+                        id: '20',
+                        name: '20'
+                    }
+                ];
+
+                $scope.Visibility = [
+                    {
+                        id: '0',
+                        name: 'false'
+                    }, {
+                        id: '1',
+                        name: 'true'
+                    }
+                ];
+
+                $scope.selectedPage = $scope.Pages[2];
+
+                var config = {
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    }
+                }
+
+                getAllData();
+
+                function getAllData() {
+                    $("#wait").css("display", "block");
+
+                    $http.post('@Url.Action("GetDepartments", "Department")', JSON.stringify({ Statuslst: $scope.statuslst }), config)
+                        .success(function (data, status, headers, config) {
+                            $("#wait").css("display", "none");
+
+                            if (data.flag != -1) {
+                                $scope.Departmentlst = data.Departmentlst;
+                                if (data.Departmentlst.length > 5) {
+                                    $scope.emptyList = false;
+                                } else {
+                                    $scope.emptyList = true;
+                                }
+                                $scope.AddPermission = data.AddPermission;
+                                $scope.EditPermission = data.EditPermission;
+                                $scope.DeletePermission = data.DeletePermission;
+                                if ($scope.selectedPage.name > $scope.Departmentlst.length) {
+                                    $scope.NumRows = "1-" + $scope.Departmentlst.length + " out of " + ($scope.Departmentlst.length);
+                                } else {
+                                    $scope.NumRows = "1-" + $scope.selectedPage.name + " out of " + ($scope.Departmentlst.length);
+
+                                }
+                                for (i = 0; i < $scope.Departmentlst.length; i++) {
+                                    $scope.Departmentlst[i].editDescription = $scope.Departmentlst[i].Description;
+                                    $scope.Departmentlst[i].editStatus = $scope.Departmentlst[i].Status;
+                                    $scope.Departmentlst[i].editName = $scope.Departmentlst[i].Name;
+                                }
+
+                                var itempage =
+                                             {
+                                                 id: $scope.Departmentlst.length,
+                                                 name: $scope.Departmentlst.length
+                                };
+
+                                $scope.Pages.push(itempage);
+                            }
+
+                            else if (data.flag == "-1") {
+                                Alert("Error: "+ data.text);
+                            }
+
+                            else if (data.flag == "-4") {
+                                Alert("Warning: "+ data.text, "W");
+                            }
+                        })
+                        .error(function (data, status, header, config) {
+                            Alert("Error: "+ "Error in connection");
+                            $("#wait").css("display", "none");
+                        });
+                }
+
+                $scope.UpdateRow = function (item) {
+                    $("#wait").css("display", "block");
+                    var config = {
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        }
+                    }
+
+                    if (item.editStatus == "" || item.editStatus == null || item.editDescription == "" || item.editDescription == null || item.editName == "" || item.editName == null) {
+                        Alert("Warning: "+ "Kindly fill empty fields before proceeding", "W");
+                        $("#wait").css("display", "none");
+                        return;
+                    }
+
+                    var Status = angular.copy(item.Status);
+                    var Description = angular.copy(item.Description);
+                    var Name = angular.copy(item.Name);
+                    item.Status = item.editStatus;
+                    item.Description = item.editDescription;
+                    item.Name = item.editName;
+                    $http.post('@Url.Action("UpdateDepartment", "Department")', JSON.stringify({ doDepartment: item }), config)
+                    .success(function (data, status, headers, config) {
+                        $("#wait").css("display", "none");
+
+                        if (data.flag == "-3") {
+                            SessionTimedOut("Information", data.text, "OK", data.URL);
+                        } else if (data.flag == "-4") {
+                            Alert("Warning: "+ data.text, "W");
+                        } else if (data.flag == "-1") {
+                            item.Status = Status;
+                            item.Description = Description;
+                            Alert("Error: "+ data.text);
+                        } else {
+                            Alert("Success: "  + data.text);
+                                getAllData();
+                            $scope.editMode = false;
+                            $scope.editing == null;
+                        }
+
+                    })
+                    .error(function (data, status, header, config) {
+                        Alert("Error: "+ "Error in connection");
+                        $("#wait").css("display", "none");
+                    });
+                }
+
+
+                $scope.DeleteRow = function (item) {
+                    $("#wait").css("display", "block");
+                    var config = {
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        }
+                    }
+                    
+                    $http.post('@Url.Action("DeleteDepartment", "Department")', JSON.stringify({ Id: item }), config)
+                    .success(function (data, status, headers, config) {
+                        $("#wait").css("display", "none");
+
+                        if (data.flag == "-3") {
+                            SessionTimedOut("Information", data.text, "OK", data.URL);
+                        } else if (data.flag == "-4") {
+                            Alert("Warning: "+ data.text, "W");
+                        } else if (data.flag == "-1") {
+                          
+                            Alert("Error: "+ data.text);
+                        } else {
+                            Alert("Success");
+                        }
+
+                    })
+                    .error(function (data, status, header, config) {
+                        Alert("Error: "+ "Error in connection");
+                        $("#wait").css("display", "none");
+                    });
+                }
+
+
+                $scope.AddDepartment = function (item) {
+                    $("#wait").css("display", "block");
+                    var config = {
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        }
+                    }
+
+                    if (item == null || item.Name == "" || item.Name == null || item.Description == "" || item.Description == null) {
+                        Alert("Warning: "+ "Kindly fill all fields before proceeding", "W");
+                        $("#wait").css("display", "none");
+                        return;
+                    }
+
+                    $http.post('@Url.Action("AddDepartment", "Department")', JSON.stringify({ doDepartment: item }), config)
+                        .success(function (data, status, headers, config) {
+                            $("#wait").css("display", "none");
+                            if (data.flag == "-3") {
+                            SessionTimedOut("Information", data.text, "OK", data.URL);
+                            }
+                            else if (data.flag == "-1") {
+                                Alert("Error: "+ data.text);
+                            } else if (data.flag == "-4") {
+                                Alert("Warning: "+ data.text, "W");
+                            } else {
+                          
+                               
+                                    $scope.tempDepartmentlst = angular.copy($scope.Departmentlst);
+                         
+                                $scope.AddMode = false;
+                                getAllData();
+                            }
+                        })
+                        .error(function (data, status, header, config) {
+                            Alert("Error: "+ "Error in connection");
+                            $("#wait").css("display", "none");
+                        });
+                }
+
+                $scope.EditRow = function (item) {
+                $scope.editing = $scope.Departmentlst.indexOf(item);
+                $scope.tempDepartmentlst = angular.copy($scope.Departmentlst);
+                }
+
+                $scope.CancelEdit = function () {
+                    $scope.Departmentlst = angular.copy($scope.tempDepartmentlst);
+                    $scope.editing == null;
+                }
+
+                $scope.Search = function () {
+                    if ($scope.FilterValue == "" || $scope.FilterValue == null) { $scope.selectedPage = $scope.Pages[2]; }
+                    else { $scope.selectedPage = $scope.Pages[4]; }
+                }
+
+                $scope.paginationchanged = function () {
+                    $scope.NumRows = "1-" + $scope.selectedPage.name + " out of " + ($scope.Departmentlst.length);
+                }
+
+                $scope.Pagechanged = function (item) {
+
+                    var div = $scope.Departmentlst.length / $scope.selectedPage.name
+
+                    if (div < item) {
+                        var quotient = Math.floor($scope.Departmentlst.length / $scope.selectedPage.name);
+
+                        $scope.NumRows = (quotient * $scope.selectedPage.name + 1) + "-" + $scope.Departmentlst.length + " out of " + ($scope.Departmentlst.length);
+                    }
+                    else {
+                        $scope.NumRows = 1 + (item - 1) * $scope.selectedPage.name + "-" + item * $scope.selectedPage.name + " out of " + ($scope.Departmentlst.length);
+                    }
+                }
+
+                $scope.numSort = 0;
+
+                $scope.sort = function (keyname, imgID) {
+
+
+                    document.getElementById("imgId").style.visibility = 'hidden';
+                    document.getElementById("imgName").style.visibility = 'hidden';
+                   document.getElementById("imgDescription").style.visibility = 'hidden';
+                    document.getElementById("imgStatus").style.visibility = 'hidden';
+
+                    document.getElementById(imgID).style.visibility = 'visible';
+
+                    if ($scope.sortKey == keyname) {
+                        $scope.reverse = !$scope.reverse;
+                        $scope.numSort += 1;
+                        if ($scope.numSort % 2 == 1) {
+                            document.getElementById(imgID).src = "../Content/Images/ArrowDown.png";
+                        } else {
+                            document.getElementById(imgID).src = "../Content/Images/ArrowUp.png";
+                        }
+                    } else {
+                        $scope.sortKey = keyname;
+                        $scope.reverse = false;
+                        document.getElementById(imgID).src = "../Content/Images/ArrowUp.png";
+                        $scope.numSort = 0;
+
+                    }
+                }
+
+                $scope.AddRow = function () {
+                    $scope.AddMode = true;
+                }
+
+                $scope.RemoveAddNewRow = function () {
+                    $scope.AddMode = false;
+                }
+
+              
+
+            });
+
+      
+    </script>
+
+    <title></title>
+
+    <style>
+       
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+        }
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body ng-app="MyApp" ng-controller="validateCtrl" style="overflow-x: auto;margin-top:5%;">
+    <div id="wait" style="display:none;width:69px;height:89px;border:none;position:absolute;top:50%;left:50%;padding:2px;"><img src="~/Content/Images/loader.gif" width="64" height="64" /></div>
+
+
+
+
+
+    <div class="col-lg-12">
+
+        <div class="col-lg-11">
+            <div class="col-lg-3">
+                <label>Filter: <input ng-model="FilterValue" ng-change="Search()"></label>
+            </div>
+
+            <div class="col-lg-1">
+                <label class="container">
+                    Active
+                    <input type="checkbox" ng-model="ActiveChecked" ng-change="StatusChecked();">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-lg-1">
+                <label class="container">
+                    Inactive
+                    <input type="checkbox" checked="checked" ng-model="InactiveChecked" ng-change="StatusChecked();">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-11">
+    </div>
+    <div class="col-lg-1" ng-show="AddPermission || EditPermission">
+        <button class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" style="float:right;" title="Add" ng-click="AddRow()" ng-hide="AddMode"><i class="fa fa-plus"></i></button>
+        <button class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" style="float:right;" title="Remove" ng-click="RemoveAddNewRow()" ng-show="AddMode"><i class="fa fa-minus"></i></button>
+    </div>
+
+
+    <table class="table table-hover" ng-table="ASBBranchesTable" ng-cloak>
+
+        <caption ng-bind="NumRows"></caption>
+        <thead>
+            <tr>
+
+                <th ng-click="sort('Id','imgId')">#ID<img id="imgId" style=" width: 20px;visibility: hidden;" /></th>
+                <th ng-click="sort('Name','imgName')">Name<img id="imgName" style=" width: 20px;visibility: hidden;" /></th>
+                <th ng-click="sort('Description','imgDescription')">Description<img id="imgDescription" style=" width: 20px;visibility: hidden;" /></th>
+                <th ng-click="sort('Status','imgStatus')">Status<img id="imgStatus" style=" width: 20px;visibility: hidden;" /></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr class="trgrv" ng-show="AddMode">
+
+                <td></td>
+                <td><input type="text" ng-model="newItem.Name" style="width:100%;" /></td>
+                <td><input type="text" ng-model="newItem.Description" style="width:100%;" /></td>                
+                <td>
+                    Active
+                </td>
+
+                <td>
+                    <ul class="list-inline m-0" style="text-align:right !important;" ng-show="AddPermission">
+
+                        <li class="list-inline-item">
+                            <button   ng-show="AddPermission" class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add" ng-click="AddDepartment(newItem)"><i class="fa fa-check"></i></button>
+                        </li>
+
+
+
+
+                      
+
+                    </ul>
+                </td>
+            </tr>
+
+            <tr class="trgrv" dir-paginate="item in Departmentlst | orderBy:sortKey:reverse | itemsPerPage:selectedPage.id | filter: FilterValue" style="border: 2px solid; height: 30px; border-color: #EFEFEF;">
+
+                <td>
+                    <span ng-bind="item.Id"></span>
+                </td>
+
+                <td>
+                    <span ng-bind="item.Name" ng-show="!editMode"></span>
+                    <input type="text" ng-show="editMode" ng-model="item.editName" style="width:100%;" />
+                </td>
+
+                <td>
+                    <span ng-bind="item.Description" ng-show="!editMode"></span>
+                    <input type="text" ng-show="editMode" ng-model="item.editDescription" style="width:100%;" />
+                </td>
+
+                <td>
+                    <span ng-bind="item.Status" ng-show="!editMode"></span>
+                    <select ng-model="item.editStatus" ng-show="editMode">
+                        <option value="Active">Active
+                        <option value="Inactive">Inactive
+                    </select>
+                </td>
+
+              
+                <td>
+
+
+                    <ul class="list-inline m-0" style="text-align:right !important;">
+                        <li class="list-inline-item" ng-show="editMode">
+                            <button class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ng-click="editMode = false;CancelEdit();"><i class="fa fa-minus"></i></button>
+                        </li>
+
+
+
+
+                        <li class="list-inline-item" ng-show="editMode">
+                            <button class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ng-click="editMode = false;UpdateRow(item);"><i class="fa fa-check"></i></button>
+                        </li>
+                        <li class="list-inline-item" ng-hide="editMode">
+
+                            <button class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ng-click="editMode = true;EditRow(item)"><i class="fa fa-pencil"></i></button>
+                        </li>
+
+                        <li class="list-inline-item" ng-show="DeletePermission">
+                            <button  class="btn  btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" ng-click="DeleteRow(item.Id)"><i class="fa fa-trash-o"></i></button>
+                        </li>
+
+
+
+                    </ul>
+
+
+                </td>
+
+
+
+
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <table style=" width: 51%;" ng-hide="emptyList">
+        <tr style="width:100%;">
+            <td>
+
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true"
+                                         on-page-change="Pagechanged(newPageNumber)">
+                </dir-pagination-controls>
+            </td>
+            <td>
+
+                <select style="height: 36px; width: 21%; " data-ng-options="o.name for o in Pages" data-ng-model="selectedPage" ng-change="paginationchanged()"></select>
+                <span style="color: #BFBFBE;">
+                    (No. of Displayed Records)
+                </span>
+
+            </td>
+        </tr>
+
+    </table>
+
+
+
+</body>
+
